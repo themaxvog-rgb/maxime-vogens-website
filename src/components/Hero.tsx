@@ -3,20 +3,22 @@
 import { useTranslations, useLocale } from 'next-intl';
 import Link from 'next/link';
 import { ArrowRight, TrendingUp } from 'lucide-react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
+
+const easeCurve: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function Hero() {
   const t = useTranslations('hero');
   const locale = useLocale();
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: {},
     visible: { transition: { staggerChildren: 0.1 } },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: { opacity: 0, y: 24 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: [0.22, 1, 0.36, 1] } },
+    visible: { opacity: 1, y: 0, transition: { duration: 0.7, ease: easeCurve } },
   };
 
   return (

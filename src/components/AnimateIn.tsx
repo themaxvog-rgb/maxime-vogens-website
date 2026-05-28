@@ -1,6 +1,6 @@
 'use client';
 
-import { motion, useInView } from 'framer-motion';
+import { motion, useInView, Variants } from 'framer-motion';
 import { useRef } from 'react';
 
 interface AnimateInProps {
@@ -9,6 +9,8 @@ interface AnimateInProps {
   delay?: number;
   direction?: 'up' | 'down' | 'left' | 'right' | 'none';
 }
+
+const easeCurve: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
 export default function AnimateIn({
   children,
@@ -19,7 +21,7 @@ export default function AnimateIn({
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: '-80px' });
 
-  const variants = {
+  const variants: Variants = {
     hidden: {
       opacity: 0,
       y: direction === 'up' ? 32 : direction === 'down' ? -32 : 0,
@@ -32,7 +34,7 @@ export default function AnimateIn({
       transition: {
         duration: 0.6,
         delay,
-        ease: [0.22, 1, 0.36, 1],
+        ease: easeCurve,
       },
     },
   };
