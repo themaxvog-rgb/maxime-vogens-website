@@ -54,21 +54,22 @@ export default function Offers() {
 
         <div className="grid md:grid-cols-3 gap-5 items-start">
           {offers.map((offer, i) => (
-            <AnimateIn key={offer.title} delay={i * 0.1} className={offer.featured ? 'pt-5' : ''}>
-              <motion.div
-                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
-                className={`relative rounded-2xl p-8 flex flex-col h-full cursor-default group gold-shimmer overflow-visible ${
-                  offer.featured
-                    ? 'bg-[#D4AF37] text-black shadow-[0_8px_40px_rgba(212,175,55,0.25)]'
-                    : 'glass-card hover:border-[#D4AF37]/20 transition-colors duration-300'
-                }`}
-              >
+            <AnimateIn key={offer.title} delay={i * 0.1}>
+              <div className="relative">
                 {offer.featured && (
-                  <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-[#0A0A0A] text-[#D4AF37] text-xs font-bold px-4 py-1.5 rounded-full border border-[#D4AF37]/40 flex items-center gap-1.5 font-body">
+                  <div className="absolute -top-4 left-1/2 -translate-x-1/2 z-10 whitespace-nowrap bg-[#0A0A0A] text-[#D4AF37] text-xs font-bold px-4 py-1.5 rounded-full border border-[#D4AF37]/40 flex items-center gap-1.5 font-body">
                     <Star size={9} fill="currentColor" />
                     {offer.badge}
                   </div>
                 )}
+              <motion.div
+                whileHover={{ y: -8, transition: { duration: 0.3, ease: [0.22, 1, 0.36, 1] } }}
+                className={`relative rounded-2xl p-8 flex flex-col h-full cursor-default group gold-shimmer ${
+                  offer.featured
+                    ? 'bg-[#D4AF37] text-black shadow-[0_8px_40px_rgba(212,175,55,0.25)] mt-5'
+                    : 'glass-card hover:border-[#D4AF37]/20 transition-colors duration-300'
+                }`}
+              >
                 {!offer.featured && (
                   <span className="text-[10px] font-bold uppercase tracking-[0.2em] text-[#D4AF37] mb-5 font-body">
                     {offer.badge}
@@ -101,6 +102,7 @@ export default function Offers() {
                   </Link>
                 </div>
               </motion.div>
+              </div>
             </AnimateIn>
           ))}
         </div>
